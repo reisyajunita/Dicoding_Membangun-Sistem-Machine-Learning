@@ -1,0 +1,12 @@
+# Konfigurasi Global
+global:
+  scrape_interval: 15s # Seberapa sering target di-scrape secara default.
+  evaluation_interval: 15s # Seberapa sering aturan alerting dievaluasi.
+
+# Konfigurasi Pengambilan Data (Scrape)
+scrape_configs:
+  # Hanya SATU job untuk memantau aplikasi model Anda.
+  - job_name: 'churn_model_service'
+    scrape_interval: 5s # Override scrape interval global, ambil data setiap 5 detik.
+    static_configs:
+      - targets: ['churn_model_app:5001']
